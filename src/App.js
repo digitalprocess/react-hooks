@@ -1,15 +1,15 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import './App.css'
 import Toggle from './Toggle'
 import {useTitleInput} from './hooks/useTitleInput'
 
 const App = () => {
 	const [name, setName] = useTitleInput('')
+	const ref = useRef()
 
 	return (
-		<div className="main-wrapper">
-			<h1>React Hooks</h1>
-
+		<div className="main-wrapper" ref={ref}>
+			<h1 onClick={() => ref.current.classList.toggle('new-class')}>React Hooks</h1>
 			<Toggle>
 				<h2>Hello!</h2>
 			</Toggle>
