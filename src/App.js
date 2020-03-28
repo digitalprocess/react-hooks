@@ -4,6 +4,7 @@ import {useTitleInput} from './hooks/useTitleInput'
 import './App.css'
 
 import Toggle from './Toggle'
+import DishForm from './DishForm'
 
 export const UserContext = createContext()
 
@@ -37,7 +38,7 @@ const App = () => {
 					React Hooks
 				</h1>
 				<Toggle>
-					<h2>Hello!</h2>
+					<DishForm />
 				</Toggle>
 				<form onSubmit={ev => {
 					ev.preventDefault()
