@@ -4,7 +4,7 @@ import {UserContext} from './App'
 const Toggle = ({children}) => {
 	const [isToggled, setIsToggled] = useState(false)
 	const userInfo = useContext(UserContext)
-	console.log('userInfo: ', userInfo)
+
 	if (!userInfo.user) return null
 
 	return (

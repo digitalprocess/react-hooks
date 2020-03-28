@@ -1,4 +1,4 @@
-import React, {useRef, createContext} from 'react'
+import React, {useRef, createContext, useMemo} from 'react'
 import {useTitleInput} from './hooks/useTitleInput'
 
 import './App.css'
@@ -12,6 +12,16 @@ const App = () => {
 	const [name, setName] = useTitleInput('')
 	const ref = useRef()
 
+	const reverseWord = word => {
+		return word
+			.split('')
+			.reverse()
+			.join('')
+	}
+
+	const title = 'React Hooks'
+	const TitleReversed = useMemo(() => reverseWord(title), [title])
+
 	return (
 		<UserContext.Provider
 			value={{
@@ -19,7 +29,11 @@ const App = () => {
 			}}
 		>
 			<div className="main-wrapper" ref={ref}>
-				<h1 onClick={() => ref.current.classList.toggle('new-class')}>React Hooks</h1>
+				<h1
+					onClick={() => ref.current.classList.toggle('new-class')}
+				>
+					{TitleReversed}
+				</h1>
 				<Toggle>
 					<h2>Hello!</h2>
 				</Toggle>
