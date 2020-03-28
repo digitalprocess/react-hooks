@@ -1,7 +1,10 @@
 import React, {useRef, createContext} from 'react'
-import './App.css'
-import Toggle from './Toggle'
 import {useTitleInput} from './hooks/useTitleInput'
+
+import './App.css'
+
+import Toggle from './Toggle'
+import Counter from './Counter'
 
 export const UserContext = createContext()
 
@@ -20,6 +23,7 @@ const App = () => {
 				<Toggle>
 					<h2>Hello!</h2>
 				</Toggle>
+				<Counter />
 				<form onSubmit={ev => {
 					ev.preventDefault()
 				}}>
