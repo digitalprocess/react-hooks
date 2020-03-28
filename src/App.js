@@ -1,9 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css'
 import Toggle from './Toggle'
 
 const App = () => {
 	const [name, setName] = useState('')
+
+	useEffect(() => {
+		document.title = name
+	})
 
 	return (
 		<div className="main-wrapper">
@@ -14,18 +18,12 @@ const App = () => {
 			</Toggle>
 			<form onSubmit={ev => {
 				ev.preventDefault()
-				formSubmt(name, setName)
 			}}>
 				<input type="text" onChange={ev => setName(ev.target.value)} value={name} />
-				<button>Submit</button>
+				<button type="submit">Submit</button>
 			</form>
 		</div>
 	)
-}
-
-const formSubmt = (value, setValue) => {
-	console.log('email sent to ' + value + '!')
-	setValue('')
 }
 
 export default App
