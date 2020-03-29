@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, createContext } from 'react'
-import {useTitleInput} from './hooks/useTitleInput'
 
 import './App.css'
 
@@ -9,7 +8,6 @@ import DishForm from './DishForm'
 export const UserContext = createContext()
 
 const App = () => {
-	const [name, setName] = useTitleInput('')
 	const ref = useRef()
 	const [dishes, setDishes] = useState([])
 
@@ -22,7 +20,7 @@ const App = () => {
 
 	useEffect(() => {
 		fetchData();
-	}, [name]); // this tells useEffect what to watch for when it changes
+	}, []); // this tells useEffect what to watch for when it changes
 
 	return (
 
@@ -37,15 +35,9 @@ const App = () => {
 				>
 					React Hooks
 				</h1>
-				<Toggle>
+				<Toggle isToggled={false}>
 					<DishForm />
 				</Toggle>
-				<form onSubmit={ev => {
-					ev.preventDefault()
-				}}>
-					<input type="text" onChange={ev => setName(ev.target.value)} value={name} />
-					<button type="submit">Submit</button>
-				</form>
 
 				{dishes.map(dish => (
 					<article

@@ -1,16 +1,21 @@
-import React, { useState, useContext } from "react";
-import {UserContext} from './App'
+import React, { useState, useRef } from "react";
+import { useOnClickOutside } from './hooks/useOnClickOutside'
 
 const Toggle = ({children}) => {
 	const [isToggled, setIsToggled] = useState(false)
-	const userInfo = useContext(UserContext)
-
-	if (!userInfo.user) return null
+	const ref = useRef()
+	useOnClickOutside(ref, () => setIsToggled(false))
 
 	return (
 		<div>
-			<button onClick={() => setIsToggled(!isToggled)}>Toggle</button>
-			{isToggled && children}
+			{isToggled ?
+				<div ref={ref} className="Toggle-body">
+					<button onClick={() => setIsToggled(!setIsToggled)}>Close</button>
+					{children}
+				</div>
+				:
+				<button onClick={() => setIsToggled(!isToggled)}>Open</button>
+			}
 		</div>
 	)
 }
